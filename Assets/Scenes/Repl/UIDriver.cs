@@ -102,6 +102,7 @@ public class UIDriver : MonoBehaviour, IRepl
     /// </summary>
     private string Output
     {
+        get => OutputField.text;
         set
         {
             OutputField.text = value;
@@ -152,7 +153,7 @@ public class UIDriver : MonoBehaviour, IRepl
     // ReSharper disable once UnusedMember.Local
     private void OnGUI()
     {
-        Scenes.HandleSceneKeys(Scenes.Menu);
+        //Scenes.HandleSceneKeys(Scenes.Menu);
 
         var e = Event.current;
 
@@ -166,6 +167,10 @@ public class UIDriver : MonoBehaviour, IRepl
 
                 case KeyCode.PageUp:
                     ScrollPages(-1);
+                    break;
+
+                case KeyCode.Insert:
+                    GUIUtility.systemCopyBuffer = Output;
                     break;
             }
         }
